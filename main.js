@@ -1,4 +1,6 @@
 var letsCookButton = document.querySelector('.cook-button');
+var cookPotIcon = document.querySelector('img');
+
 
 
 var sides = [
@@ -50,3 +52,11 @@ var desserts = [
   "Croissants",
   "Eclairs"
 ]
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}

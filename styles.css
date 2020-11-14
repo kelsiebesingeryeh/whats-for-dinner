@@ -89,3 +89,7 @@ img {
   padding: 1%;
   margin-top: 5%
 }
+
+.hidden {
+  display: none;
+}
