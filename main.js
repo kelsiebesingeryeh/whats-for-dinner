@@ -62,19 +62,27 @@ function generateRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+function revealEntireMeal(side, main, dessert) {
+  dishDisplay.innerHTML = `
+  <p>${main} with a side of ${side} and ${dessert} for dessert!</p>`
+}
+
 function revealDish(event) {
   event.preventDefault();
   hide(cookPotIcon);
   show(displayHiddenText);
+  var randomSide = meal.sides[generateRandomIndex(meal.sides)]
+  var randomMain = meal.mains[generateRandomIndex(meal.mains)]
+  var randomDessert = meal.desserts[generateRandomIndex(meal.desserts)]
 
   if (radioButtons[0].checked) {
-    setMessage(meal.sides[generateRandomIndex(meal.sides)]);
+    setMessage(randomSide);
   } else if (radioButtons[1].checked) {
-    setMessage(meal.mains[generateRandomIndex(meal.mains)]);
+    setMessage(randomMain);
   } else if (radioButtons[2].checked) {
-    setMessage(meal.desserts[generateRandomIndex(meal.desserts)]);
+    setMessage(randomDessert);
   } else if (radioButtons[3].checked) {
-
+    revealEntireMeal(randomSide, randomMain, randomDessert)
   }
 }
 
