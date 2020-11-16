@@ -6,55 +6,57 @@ var displayHiddenText = document.querySelector('.display-text');
 
 letsCookButton.addEventListener('click', revealDish)
 
-var sides = [
-  "Miso Glazed Carrots",
-  "Coleslaw",
-  "Garden Salad",
-  "Crispy Potatoes",
-  "Sweet Potato Tots",
-  "Coconut Rice",
-  "Caeser Salad",
-  "Shrimp Summer Rolls",
-  "Garlic Butter Mushrooms",
-  "Hush Puppies"
-]
+var meal = {
+  sides: [
+    "Miso Glazed Carrots",
+    "Coleslaw",
+    "Garden Salad",
+    "Crispy Potatoes",
+    "Sweet Potato Tots",
+    "Coconut Rice",
+    "Caeser Salad",
+    "Shrimp Summer Rolls",
+    "Garlic Butter Mushrooms",
+    "Hush Puppies"
+  ],
 
-var mains = [
-  "Spaghetti and Meatballs",
-  "Pineapple Chicken",
-  "Shakshuka",
-  "Thai Yellow Curry",
-  "Bibimbap",
-  "Chicken Parmesean",
-  "Butternut Squash Soup",
-  "BBQ Chicken Burgers",
-  "Ramen",
-  "Empanadas",
-  "Chicken Fried Rice",
-  "Sheet Pan Fajitas",
-  "Margarita Pizza"
-]
+  mains: [
+    "Spaghetti and Meatballs",
+    "Pineapple Chicken",
+    "Shakshuka",
+    "Thai Yellow Curry",
+    "Bibimbap",
+    "Chicken Parmesean",
+    "Butternut Squash Soup",
+    "BBQ Chicken Burgers",
+    "Ramen",
+    "Empanadas",
+    "Chicken Fried Rice",
+    "Sheet Pan Fajitas",
+    "Margarita Pizza"
+  ],
 
-var desserts = [
-  "Apple Pie",
-  "Lemon Meringue Pie",
-  "Black Forest Cake",
-  "Banana Bread",
-  "Peach Cobbler",
-  "Cheesecake",
-  "Funfetti Cake",
-  "Baklava",
-  "Flan",
-  "Macarons",
-  "Macaroons",
-  "Chocolate Cupcakes",
-  "Pavlova",
-  "Pumpkin Pie",
-  "Key Lime Pie",
-  "Tart Tatin",
-  "Croissants",
-  "Eclairs"
-]
+  desserts: [
+    "Apple Pie",
+    "Lemon Meringue Pie",
+    "Black Forest Cake",
+    "Banana Bread",
+    "Peach Cobbler",
+    "Cheesecake",
+    "Funfetti Cake",
+    "Baklava",
+    "Flan",
+    "Macarons",
+    "Macaroons",
+    "Chocolate Cupcakes",
+    "Pavlova",
+    "Pumpkin Pie",
+    "Key Lime Pie",
+    "Tart Tatin",
+    "Croissants",
+    "Eclairs"
+  ]
+}
 
 function generateRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -62,21 +64,19 @@ function generateRandomIndex(array) {
 
 function revealDish(event) {
   event.preventDefault();
-  var sideIndex = generateRandomIndex(sides);
-  var mainIndex = generateRandomIndex(mains);
-  var dessertIndex = generateRandomIndex(desserts);
   hide(cookPotIcon);
   show(displayHiddenText);
 
   if (radioButtons[0].checked) {
-    setMessage(sides[sideIndex]);
+    setMessage(meal.sides[generateRandomIndex(meal.sides)]);
   } else if (radioButtons[1].checked) {
-    setMessage(mains[mainIndex]);
+    setMessage(meal.mains[generateRandomIndex(meal.mains)]);
   } else if (radioButtons[2].checked) {
-    setMessage(desserts[dessertIndex])
+    setMessage(meal.desserts[generateRandomIndex(meal.desserts)]);
+  } else if (radioButtons[3].checked) {
+
   }
 }
-
 
 function show(element) {
   element.classList.remove('hidden');
