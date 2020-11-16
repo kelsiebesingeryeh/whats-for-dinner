@@ -3,8 +3,10 @@ var cookPotIcon = document.querySelector('img');
 var dishDisplay = document.querySelector('.dish-display-area');
 var radioButtons = document.getElementsByName('dish');
 var displayHiddenText = document.querySelector('.display-text');
+var clearButton = document.querySelector('.clear-me-button');
 
-letsCookButton.addEventListener('click', revealDish)
+letsCookButton.addEventListener('click', revealDish);
+clearButton.addEventListener('click', removeMessage);
 
 var meal = {
   sides: [
@@ -71,6 +73,7 @@ function revealDish(event) {
   event.preventDefault();
   hide(cookPotIcon);
   show(displayHiddenText);
+  show(clearButton);
   var randomSide = meal.sides[generateRandomIndex(meal.sides)]
   var randomMain = meal.mains[generateRandomIndex(meal.mains)]
   var randomDessert = meal.desserts[generateRandomIndex(meal.desserts)]
@@ -97,3 +100,21 @@ function hide(element) {
 function setMessage(dish) {
   dishDisplay.innerText = `${dish}!`
 }
+
+function removeMessage() {
+  clearMessage();
+  show(cookPotIcon);
+  hide(displayHiddenText);
+  hide(clearButton);
+}
+
+function clearMessage() {
+  dishDisplay.innerText = '';
+}
+
+
+
+/*
+Pseudocoding:
+5. user should not be able to click lets cook button for a recipe until they have selected an option
+*/
