@@ -90,6 +90,11 @@ img {
   margin-top: 5%
 }
 
+.display-text {
+  font-style: italic;
+  text-align: center;
+}
+
 .hidden {
   display: none;
 }
