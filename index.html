@@ -1,17 +1,19 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="./styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>What's for Dinner?</h1>
-        <button class="add-recipe-button">ADD A RECIPE</button>
-      </header>
-      <div class="two-boxes">
-      <section class="receipe-form">
-        <div class="receipe-box">
+
+<head>
+  <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <main>
+    <header>
+      <h1>What's for Dinner?</h1>
+      <button class="add-recipe-button">ADD A RECIPE</button>
+    </header>
+    <div class="two-boxes">
+      <section class="dish-options">
+        <div class="recipe-box">
           <h2>What are you looking for?</h2>
           <form>
             <div class="radio">
@@ -32,15 +34,17 @@
                 <label for="entire-meal">Entire Meal</label>
               </span>
             </div>
-          <button class="cook-button disabled" disabled>LET'S COOK!</button>
+            <button class="cook-button disabled" disabled>LET'S COOK!</button>
           </form>
         </div>
       </section>
       <section class="view-dish">
-        <p class="display-text hidden">You should make:</p><br>
-        <h2 class="dish-display-area"></h2>
-        <img src="./assets/cookpot.svg">
-        <button class="clear-me-button hidden">CLEAR</button>
+        <div class="display-box">
+          <p class="display-text hidden">You should make:</p>
+          <h2 class="dish-display-area"></h2>
+          <img src="./assets/cookpot.svg">
+          <button class="clear-me-button hidden">CLEAR</button>
+        </div>
       </section>
       <div class="add-new-recipe-form">
         <section class="recipe-form hidden">
@@ -53,9 +57,10 @@
           </form>
         </section>
       </div>
-      </div>
-    </main>
-    <script type="text/javascript" src="meal.js"></script>
-    <script type="text/javascript" src="main.js"></script>
-  </body>
+    </div>
+  </main>
+  <script type="text/javascript" src="meal.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+
 </html>
