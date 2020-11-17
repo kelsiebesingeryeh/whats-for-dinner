@@ -4,7 +4,7 @@ var dishDisplay = document.querySelector('.dish-display-area');
 var displayHiddenText = document.querySelector('.display-text');
 var clearButton = document.querySelector('.clear-me-button');
 var radioButtons = document.querySelectorAll('.radio-buttons')
-
+var addRecipeButton = document.querySelector('.add-recipe-button');
 
 radioButtons.forEach(function (button) {
   addEventListener('click', function() {
@@ -23,6 +23,8 @@ letsCookButton.addEventListener('click', function(event) {
 });
 
 clearButton.addEventListener('click', removeMessage);
+
+addRecipeButton.addEventListener('click', addRecipe)
 
 var meal = {
   sides: [
@@ -139,4 +141,8 @@ function clearRadioButtons() {
   radioButtons.forEach(function (button) {
     button.checked = false;
   })
+}
+
+function addRecipe() {
+  
 }
