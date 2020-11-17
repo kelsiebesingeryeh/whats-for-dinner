@@ -5,6 +5,7 @@ var displayHiddenText = document.querySelector('.display-text');
 var clearButton = document.querySelector('.clear-me-button');
 var radioButtons = document.querySelectorAll('.radio-buttons')
 var addRecipeButton = document.querySelector('.add-recipe-button');
+var recipeForm = document.querySelector('.recipe-form');
 
 radioButtons.forEach(function (button) {
   addEventListener('click', function() {
@@ -144,5 +145,5 @@ function clearRadioButtons() {
 }
 
 function addRecipe() {
-  
+  show(recipeForm);
 }
