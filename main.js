@@ -1,10 +1,8 @@
 var letsCookButton = document.querySelector('.cook-button');
 var cookPotIcon = document.querySelector('img');
 var dishDisplay = document.querySelector('.dish-display-area');
-// var radioButtons = document.getElementsByName('dish');
 var displayHiddenText = document.querySelector('.display-text');
 var clearButton = document.querySelector('.clear-me-button');
-var sideButton = document.querySelector('#side');
 var radioButtons = document.querySelectorAll('.radio-buttons')
 
 
@@ -15,10 +13,11 @@ radioButtons.forEach(function (button) {
 })
 
 letsCookButton.addEventListener('click', function(event) {
+  event.preventDefault();
   if (event.target.className === 'cook-button') {
-    revealDish();
     hide(cookPotIcon);
     show(displayHiddenText);
+    revealDish();
     show(clearButton);
   }
 });
@@ -87,7 +86,6 @@ function revealEntireMeal(side, main, dessert) {
 }
 
 function revealDish(event) {
-  event.preventDefault();
   var randomSide = meal.sides[generateRandomIndex(meal.sides)]
   var randomMain = meal.mains[generateRandomIndex(meal.mains)]
   var randomDessert = meal.desserts[generateRandomIndex(meal.desserts)]
@@ -120,6 +118,7 @@ function removeMessage() {
   show(cookPotIcon);
   hide(displayHiddenText);
   hide(clearButton);
+  clearRadioButtons();
 }
 
 function clearMessage() {
@@ -136,8 +135,8 @@ function toggleButton() {
     }
 }
 
-
-/*
-Pseudocoding:
-5. user should not be able to click lets cook button for a recipe until they have selected an option
-*/
+function clearRadioButtons() {
+  radioButtons.forEach(function (button) {
+    button.checked = false;
+  })
+}
