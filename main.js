@@ -6,6 +6,9 @@ var clearButton = document.querySelector('.clear-me-button');
 var radioButtons = document.querySelectorAll('.radio-buttons')
 var addRecipeButton = document.querySelector('.add-recipe-button');
 var recipeForm = document.querySelector('.recipe-form');
+var recipeTypeInput = document.querySelector('#recipe-type');
+var recipeNameInput = document.querySelector('#recipe-name');
+var addNewRecipeButton = document.querySelector('.add-new-button');
 
 radioButtons.forEach(function (button) {
   addEventListener('click', function() {
@@ -24,8 +27,10 @@ letsCookButton.addEventListener('click', function(event) {
 });
 
 clearButton.addEventListener('click', removeMessage);
-
-addRecipeButton.addEventListener('click', addRecipe)
+addRecipeButton.addEventListener('click', function() {
+  show(recipeForm);
+});
+addNewRecipeButton.addEventListener('click', addRecipeData)
 
 var meal = {
   sides: [
@@ -144,6 +149,12 @@ function clearRadioButtons() {
   })
 }
 
-function addRecipe() {
-  show(recipeForm);
+function addRecipeData() {
+  if (recipeTypeInput.value === 'Side') {
+    meal.sides.push(recipeNameInput.value);
+  } else if (recipeTypeInput.value === 'Main Dish') {
+    meal.mains.push(recipeNameInput.value);
+  } else if (recipeTypeInput.value === 'Dessert') {
+    meal.desserts.push(recipeNameInput.value);
+  }
 }
