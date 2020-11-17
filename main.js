@@ -1,11 +1,28 @@
 var letsCookButton = document.querySelector('.cook-button');
 var cookPotIcon = document.querySelector('img');
 var dishDisplay = document.querySelector('.dish-display-area');
-var radioButtons = document.getElementsByName('dish');
+// var radioButtons = document.getElementsByName('dish');
 var displayHiddenText = document.querySelector('.display-text');
 var clearButton = document.querySelector('.clear-me-button');
+var sideButton = document.querySelector('#side');
+var radioButtons = document.querySelectorAll('.radio-buttons')
 
-letsCookButton.addEventListener('click', revealDish);
+
+radioButtons.forEach(function (button) {
+  addEventListener('click', function() {
+    toggleButton();
+  })
+})
+
+letsCookButton.addEventListener('click', function(event) {
+  if (event.target.className === 'cook-button') {
+    revealDish();
+    hide(cookPotIcon);
+    show(displayHiddenText);
+    show(clearButton);
+  }
+});
+
 clearButton.addEventListener('click', removeMessage);
 
 var meal = {
@@ -71,9 +88,6 @@ function revealEntireMeal(side, main, dessert) {
 
 function revealDish(event) {
   event.preventDefault();
-  hide(cookPotIcon);
-  show(displayHiddenText);
-  show(clearButton);
   var randomSide = meal.sides[generateRandomIndex(meal.sides)]
   var randomMain = meal.mains[generateRandomIndex(meal.mains)]
   var randomDessert = meal.desserts[generateRandomIndex(meal.desserts)]
@@ -112,6 +126,15 @@ function clearMessage() {
   dishDisplay.innerText = '';
 }
 
+function toggleButton() {
+    if (radioButtons[0].checked || radioButtons[1].checked || radioButtons[2].checked || radioButtons[3].checked) {
+      letsCookButton.disabled = false;
+      letsCookButton.classList.remove('disabled');
+    } else {
+      letsCookButton.disabled = true;
+      letsCookButton.classList.add('disabled');
+    }
+}
 
 
 /*
