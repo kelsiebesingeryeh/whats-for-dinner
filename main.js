@@ -9,12 +9,13 @@ var recipeForm = document.querySelector('.recipe-form');
 var recipeTypeInput = document.querySelector('#recipe-type');
 var recipeNameInput = document.querySelector('#recipe-name');
 var addNewRecipeButton = document.querySelector('.add-new-button');
+var currentMeal = new Meal();
 
-radioButtons.forEach(function (button) {
+radioButtons.forEach(function(button) {
   addEventListener('click', function() {
-    toggleButton();
+    toggleCookButton();
   })
-})
+});
 
 letsCookButton.addEventListener('click', function(event) {
   event.preventDefault();
@@ -35,7 +36,7 @@ addRecipeButton.addEventListener('click', function() {
 addNewRecipeButton.addEventListener('click', function(event) {
   event.preventDefault();
   if (event.target.className === 'add-new-button') {
-    addRecipeData();
+    addNewRecipeData();
     hide(cookPotIcon);
     show(displayHiddenText);
     show(clearButton);
@@ -44,71 +45,14 @@ addNewRecipeButton.addEventListener('click', function(event) {
   }
 });
 
-var meal = {
-  sides: [
-    "Miso Glazed Carrots",
-    "Coleslaw",
-    "Garden Salad",
-    "Crispy Potatoes",
-    "Sweet Potato Tots",
-    "Coconut Rice",
-    "Caeser Salad",
-    "Shrimp Summer Rolls",
-    "Garlic Butter Mushrooms",
-    "Hush Puppies"
-  ],
-
-  mains: [
-    "Spaghetti and Meatballs",
-    "Pineapple Chicken",
-    "Shakshuka",
-    "Thai Yellow Curry",
-    "Bibimbap",
-    "Chicken Parmesean",
-    "Butternut Squash Soup",
-    "BBQ Chicken Burgers",
-    "Ramen",
-    "Empanadas",
-    "Chicken Fried Rice",
-    "Sheet Pan Fajitas",
-    "Margarita Pizza"
-  ],
-
-  desserts: [
-    "Apple Pie",
-    "Lemon Meringue Pie",
-    "Black Forest Cake",
-    "Banana Bread",
-    "Peach Cobbler",
-    "Cheesecake",
-    "Funfetti Cake",
-    "Baklava",
-    "Flan",
-    "Macarons",
-    "Macaroons",
-    "Chocolate Cupcakes",
-    "Pavlova",
-    "Pumpkin Pie",
-    "Key Lime Pie",
-    "Tart Tatin",
-    "Croissants",
-    "Eclairs"
-  ]
-}
-
 function generateRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
-function revealEntireMeal(side, main, dessert) {
-  dishDisplay.innerHTML = `
-  <p>${main} with a side of ${side} and ${dessert} for dessert!</p>`
-}
-
-function revealDish(event) {
-  var randomSide = meal.sides[generateRandomIndex(meal.sides)]
-  var randomMain = meal.mains[generateRandomIndex(meal.mains)]
-  var randomDessert = meal.desserts[generateRandomIndex(meal.desserts)]
+function revealDish() {
+  var randomSide = currentMeal.sides[generateRandomIndex(currentMeal.sides)]
+  var randomMain = currentMeal.mains[generateRandomIndex(currentMeal.mains)]
+  var randomDessert = currentMeal.desserts[generateRandomIndex(currentMeal.desserts)]
 
   if (radioButtons[0].checked) {
     setMessage(randomSide);
@@ -119,6 +63,21 @@ function revealDish(event) {
   } else if (radioButtons[3].checked) {
     revealEntireMeal(randomSide, randomMain, randomDessert)
   }
+}
+
+function toggleCookButton() {
+  if (radioButtons[0].checked || radioButtons[1].checked || radioButtons[2].checked || radioButtons[3].checked) {
+    letsCookButton.disabled = false;
+    letsCookButton.classList.remove('disabled');
+  } else {
+    letsCookButton.disabled = true;
+    letsCookButton.classList.add('disabled');
+  }
+}
+
+function revealEntireMeal(side, main, dessert) {
+  dishDisplay.innerHTML = `
+  <p>${main} with a side of ${side} and ${dessert} for dessert!</p>`
 }
 
 function show(element) {
@@ -145,30 +104,10 @@ function clearMessage() {
   dishDisplay.innerText = '';
 }
 
-function toggleButton() {
-    if (radioButtons[0].checked || radioButtons[1].checked || radioButtons[2].checked || radioButtons[3].checked) {
-      letsCookButton.disabled = false;
-      letsCookButton.classList.remove('disabled');
-    } else {
-      letsCookButton.disabled = true;
-      letsCookButton.classList.add('disabled');
-    }
-}
-
 function clearRadioButtons() {
-  radioButtons.forEach(function (button) {
+  radioButtons.forEach(function(button) {
     button.checked = false;
   })
-}
-
-function addRecipeData() {
-  if (recipeTypeInput.value === 'Side') {
-    meal.sides.push(recipeNameInput.value);
-  } else if (recipeTypeInput.value === 'Main Dish') {
-    meal.mains.push(recipeNameInput.value);
-  } else if (recipeTypeInput.value === 'Dessert') {
-    meal.desserts.push(recipeNameInput.value);
-  }
 }
 
 function displayNewRecipe() {
@@ -178,4 +117,14 @@ function displayNewRecipe() {
 function clearInputs() {
   recipeTypeInput.value = "";
   recipeNameInput.value = "";
+}
+
+function addNewRecipeData() {
+  if (recipeTypeInput.value === 'Side') {
+    currentMeal.sides.push(recipeNameInput.value);
+  } else if (recipeTypeInput.value === 'Main Dish') {
+    currentMeal.mains.push(recipeNameInput.value);
+  } else if (recipeTypeInput.value === 'Dessert') {
+    currentMeal.desserts.push(recipeNameInput.value);
+  }
 }
