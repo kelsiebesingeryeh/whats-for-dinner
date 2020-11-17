@@ -4,7 +4,11 @@ var dishDisplay = document.querySelector('.dish-display-area');
 var displayHiddenText = document.querySelector('.display-text');
 var clearButton = document.querySelector('.clear-me-button');
 var radioButtons = document.querySelectorAll('.radio-buttons')
-
+var addRecipeButton = document.querySelector('.add-recipe-button');
+var recipeForm = document.querySelector('.recipe-form');
+var recipeTypeInput = document.querySelector('#recipe-type');
+var recipeNameInput = document.querySelector('#recipe-name');
+var addNewRecipeButton = document.querySelector('.add-new-button');
 
 radioButtons.forEach(function (button) {
   addEventListener('click', function() {
@@ -23,6 +27,22 @@ letsCookButton.addEventListener('click', function(event) {
 });
 
 clearButton.addEventListener('click', removeMessage);
+
+addRecipeButton.addEventListener('click', function() {
+  show(recipeForm);
+});
+
+addNewRecipeButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (event.target.className === 'add-new-button') {
+    addRecipeData();
+    hide(cookPotIcon);
+    show(displayHiddenText);
+    show(clearButton);
+    displayNewRecipe();
+    clearInputs();
+  }
+});
 
 var meal = {
   sides: [
@@ -139,4 +159,23 @@ function clearRadioButtons() {
   radioButtons.forEach(function (button) {
     button.checked = false;
   })
+}
+
+function addRecipeData() {
+  if (recipeTypeInput.value === 'Side') {
+    meal.sides.push(recipeNameInput.value);
+  } else if (recipeTypeInput.value === 'Main Dish') {
+    meal.mains.push(recipeNameInput.value);
+  } else if (recipeTypeInput.value === 'Dessert') {
+    meal.desserts.push(recipeNameInput.value);
+  }
+}
+
+function displayNewRecipe() {
+  dishDisplay.innerText = recipeNameInput.value;
+}
+
+function clearInputs() {
+  recipeTypeInput.value = "";
+  recipeNameInput.value = "";
 }
