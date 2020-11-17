@@ -14,7 +14,7 @@ body, html {
   padding: 0;
   margin: 0;
   background-image: url(./assets/burger-friends.jpg);
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -47,7 +47,7 @@ h2 {
   margin-top: 5%;
 }
 
-.receipe-form {
+.dish-options {
   height: 450px;
   width: 550px;
   background-color: rgba(225, 225, 225, .9);
@@ -93,6 +93,15 @@ img {
 .display-text {
   font-style: italic;
   text-align: center;
+}
+
+.clear-me-button {
+  margin-top: 65%;
+    background-color: #95a5a6;
+    color: #FFFFFF;
+    padding: 2%;
+    border-radius: 5px;
+    margin-left: 75px;
 }
 
 .add-new-recipe-form {
