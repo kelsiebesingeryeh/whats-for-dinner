@@ -27,10 +27,22 @@ letsCookButton.addEventListener('click', function(event) {
 });
 
 clearButton.addEventListener('click', removeMessage);
+
 addRecipeButton.addEventListener('click', function() {
   show(recipeForm);
 });
-addNewRecipeButton.addEventListener('click', addRecipeData)
+
+addNewRecipeButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  if (event.target.className === 'add-new-button') {
+    addRecipeData();
+    hide(cookPotIcon);
+    show(displayHiddenText);
+    show(clearButton);
+    displayNewRecipe();
+    clearInputs();
+  }
+});
 
 var meal = {
   sides: [
@@ -157,4 +169,13 @@ function addRecipeData() {
   } else if (recipeTypeInput.value === 'Dessert') {
     meal.desserts.push(recipeNameInput.value);
   }
+}
+
+function displayNewRecipe() {
+  dishDisplay.innerText = recipeNameInput.value;
+}
+
+function clearInputs() {
+  recipeTypeInput.value = "";
+  recipeNameInput.value = "";
 }
